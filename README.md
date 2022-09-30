@@ -1,3 +1,13 @@
+# <H1> Homework4
+# <h2> Usage
+Jupyter lab, Library: request, pandas, json, numpy, seaborn
+# <h2> Description
+Here we are going to see if there is a correlation between mortality of COVID-19 and number of hospital beds available in the U.S.. We are going to use API to access the data and join the two sets of data to plot.
+
+# <h2> Instruction
+
+# <h4> Here we are going to do some exercise on getting Covid-19 data by using API, and we will make a plot with seaborn function within Jupyter notebook at the end.
+
 ```python
 import requests
 import pandas as pd
@@ -150,6 +160,7 @@ sns.relplot(data=covid,x="Lat", y="Lon", hue="Deaths", size="Confirmed", sizes=(
 ![png](output_3_1.png)
     
 
+# <h4> Here we have an issue with values on x- and y-axix so we are going to check the value first.
 
 
 ```python
@@ -162,6 +173,7 @@ covid['Lat'][0]
     '18.35'
 
 
+# <h4> Here we are going to make a change data type of "Lat" and "Lon".
 
 
 ```python
@@ -196,6 +208,8 @@ covid.info()
     memory usage: 2.1+ MB
 
 
+# <h4> Now we can see that the data type of "Lat" and "Lon" has changed. Now we can make the plot correctly.
+
 
 ```python
 import seaborn as sns
@@ -221,8 +235,9 @@ fig=sns.relplot(data=covid,x="Lon", y="Lat", hue="Deaths", size="Confirmed", siz
     
 
 
-Dataset COVID
+# <h3> Dataset COVID
 
+# <h4> Now we are going to get another data from different source.  We are going to merge these two data by using pandas, and we are going to make a plot with the merged values in the merged data with seaborn
 
 ```python
 req=requests.get("https://www.communitybenefitinsight.org/api/get_hospitals.php").json()
@@ -388,6 +403,8 @@ hospitals.head()
 </div>
 
 
+
+# <h4> The count is not unique because there are same name all over the states in the U.S.. Therefore, we are going to create a new column called "state_county".
 
 
 ```python
@@ -621,7 +638,7 @@ HospitalInfoPerCounty.head()
 </table>
 </div>
 
-
+# <h4> the number we have in AK_Kenai Peninsula Borough is too high comparing to the others. We need to check the data type of it.
 
 
 ```python
@@ -656,6 +673,8 @@ hospitals.info()
     dtypes: object(20)
     memory usage: 535.0+ KB
 
+
+# <h4> Here we are going to make to change its data type to numbers.
 
 
 ```python
@@ -695,6 +714,9 @@ hospitals.info()
     dtypes: int64(1), object(19)
     memory usage: 535.0+ KB
 
+
+
+# <h4> We are going to create a data frame that is unique by "state_county", and we are going to sum across entries on "hospital_bed_count".
 
 
 ```python
@@ -756,7 +778,6 @@ HospitalInfoPerCounty.head()
   </tbody>
 </table>
 </div>
-
 
 
 
@@ -822,7 +843,7 @@ HospitalInfoPerCounty.head(5)
 
 
 
-COVID DATAFRAME
+# <h3> COVID DATAFRAME
 
 
 ```python
