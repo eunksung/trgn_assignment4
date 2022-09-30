@@ -1823,7 +1823,7 @@ Hospital_Covid_PerCounty.tail(5)
 </div>
 
 
-# We are going to make the final plot by using seaborn as we did last time
+# <h4> We are going to make the final plot by using seaborn as we did last time
 
 ```python
 import seaborn as sns
@@ -1837,4 +1837,4 @@ plot=sns.relplot(data=Hospital_Covid_PerCounty,x="people_per_bed", y="mortality"
     
 ![png](output_28_0.png)
     
-# <h4> We do not see any correlation between mortality and people per bed count
+# <h4> **bold text** We do not see any correlation between mortality and people per bed count
