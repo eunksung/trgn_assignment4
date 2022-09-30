@@ -845,7 +845,9 @@ HospitalInfoPerCounty.head(5)
 
 # <h3> COVID DATAFRAME
 
-
+        
+# <h4> Here we are going to work with Covid data in order to compare with "HospitalInfoPerCounty"
+        
 ```python
 import requests
 import pandas as pd
@@ -1006,7 +1008,7 @@ covid.head()
 </div>
 
 
-
+# <h4> We are going to convert full states name under "state" column to two letter code.  In order to do that, we are going to make a library and replace states name by using the library. Any state name matches with its key in the library replace to values in the library.
 
 ```python
 us_state_to_abbrev = {
@@ -1174,7 +1176,8 @@ covid.head(5)
 </div>
 
 
-
+# <h4> Here we are going to make a unique value like last time we did with hospital data.
+        
 
 ```python
 covid['state_county']=covid['state']+'_'+covid['county']
@@ -1333,7 +1336,8 @@ covid.head()
 </div>
 
 
-
+# <h4> We will create another data frame with columns that we desire to be within it and we are going to sum across entries on those columns.
+        
 
 ```python
 CovidPerCounty=covid.groupby(['state_county'], as_index=False).agg({'deaths':'sum','confirmed':'sum','population':'sum','confirmed_daily':'mean','deaths_daily':'mean'})
@@ -1510,7 +1514,8 @@ CovidPerCounty.head(15)
 </div>
 
 
-
+# <h4> We are going to create a new column "mortality" in CovidPerCounty data frame.  We will plot this value onto our final plot to compare with people per bed count value for each of counties.
+        
 
 ```python
 CovidPerCounty['mortality']=CovidPerCounty['deaths']/CovidPerCounty['confirmed']
@@ -1603,8 +1608,10 @@ CovidPerCounty.head(5)
 </div>
 
 
+        
+# <h4> Here we are going to merge two data frame and take out the values which can make interference with statistics. 
 
-
+        
 ```python
 Hospital_Covid_PerCounty=pd.merge(HospitalInfoPerCounty, CovidPerCounty, on='state_county')
 Hospital_Covid_PerCounty=Hospital_Covid_PerCounty[Hospital_Covid_PerCounty['population']>50000]
@@ -1704,9 +1711,11 @@ Hospital_Covid_PerCounty.head()
 </table>
 </div>
 
+        
 
+# <h4> In merged data, we are going to create a new column "people_per_bed" in order to compare with mortality.
 
-
+        
 ```python
 Hospital_Covid_PerCounty['people_per_bed']=Hospital_Covid_PerCounty['population']/Hospital_Covid_PerCounty['hospital_bed_count']
 ```
@@ -1814,7 +1823,7 @@ Hospital_Covid_PerCounty.tail(5)
 </div>
 
 
-
+# We are going to make the final plot by using seaborn as we did last time
 
 ```python
 import seaborn as sns
@@ -1828,4 +1837,4 @@ plot=sns.relplot(data=Hospital_Covid_PerCounty,x="people_per_bed", y="mortality"
     
 ![png](output_28_0.png)
     
-
+# <h4> We do not see any correlation between mortality and people per bed count
