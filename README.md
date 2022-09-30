@@ -1837,4 +1837,4 @@ plot=sns.relplot(data=Hospital_Covid_PerCounty,x="people_per_bed", y="mortality"
     
 ![png](output_28_0.png)
     
-# <h4> **bold text** We do not see any correlation between mortality and people per bed count
+# <h3> **We do not see any correlation between mortality and people per bed count**
